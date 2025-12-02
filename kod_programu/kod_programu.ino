@@ -354,7 +354,7 @@ void loop() {
 
     if (abs(current_raw - last_raw_reading) > 1 || last_raw_reading == 0) {
        
-       potentiometer_value = map(current_raw, 0, 1023, 20, 35); //zakladamy zakres temperatur 150 - 250
+       potentiometer_value = map(current_raw, 0, 1023, 150, 250); //zakladamy zakres temperatur 150 - 250
        
        if (potentiometer_value != last_pot_value) {
            last_pot_value = potentiometer_value;
