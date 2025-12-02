@@ -49,6 +49,7 @@ int last_set_button_state = HIGH;
 //obsluga potenjometru
 int potentiometer_value = 0;
 int last_pot_value = -1;
+int last_raw_reading = 0;
 
 // obsluga przerwania od resetu
 volatile bool reset_request = false;
@@ -345,12 +346,22 @@ void loop() {
   last_change_button_state = currentReading;
 
   if(active_screen == 1){
-    int raw_val = analogRead(POTENTIOMETER);
-    potentiometer_value = map(raw_val, 0, 1023, 150, 250);  //dopuszczalne wartosci temp: 150-250
+    long sum = 0;
+    for(int i=0; i<64; i++) {
+      sum += analogRead(POTENTIOMETER);
+    }
+    int current_raw = sum / 64;
 
-    if (potentiometer_value != last_pot_value) {
-       last_pot_value = potentiometer_value;  //odsiwezamy tylko gdy zmiana wartosci
-       parameter_screen();
+    if (abs(current_raw - last_raw_reading) > 1 || last_raw_reading == 0) {
+       
+       potentiometer_value = map(current_raw, 0, 1023, 20, 35); //zakladamy zakres temperatur 150 - 250
+       
+       if (potentiometer_value != last_pot_value) {
+           last_pot_value = potentiometer_value;
+           parameter_screen();
+       }
+       
+       last_raw_reading = current_raw;
     }
 
     //przycisk SET
