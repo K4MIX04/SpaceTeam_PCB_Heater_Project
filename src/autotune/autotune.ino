@@ -57,7 +57,6 @@ void setup() {
   windowStartTime = millis();
   
   Serial.println("ROZPOCZYNAM STROJENIE...");
-  Serial.println("To potrwa kilkanascie minut.");
 }
 
 void loop() {
@@ -116,7 +115,7 @@ void loop() {
     double kd = aTune.GetKd();
     
     oled.clear();
-    oled.setCursor(0,0); oled.println("WYNIKI (Zapisz!):");
+    oled.setCursor(0,0); oled.println("WYNIKI:");
     oled.println("----------------");
     
     oled.print("Kp: "); oled.println(kp);

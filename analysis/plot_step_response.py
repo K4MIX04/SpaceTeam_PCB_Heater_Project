@@ -17,7 +17,7 @@ with open(csv_filename, mode='w', newline='') as file:
     writer.writerow(["Time_s", "Input_u_PWM", "Output_y_Temp"])
 
 print(f"--- ROZPOCZETO REJESTRACJE SKOKU ---")
-print(f"Dane beda zapisywane do: {csv_filename}")
+print(f"Dane zapisywane do: {csv_filename}")
 print(f"Format danych: Czas [s], Sterowanie [0-1000], Temperatura [C]")
 
 x_time = []
@@ -32,9 +32,9 @@ try:
     ser = serial.Serial(ARDUINO_PORT, BAUD_RATE, timeout=1)
     time.sleep(2)
     ser.reset_input_buffer()
-    print("Polaczono! Oczekiwanie na dane...")
+    print("Polaczono!")
 except Exception as e:
-    print(f"BLAD: Nie mozna otworzyc portu. Zamknij Arduino IDE! \nSzczegoly: {e}")
+    print(f"Nie mozna otworzyc portu.\nSzczegoly: {e}")
     exit()
 
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
@@ -102,4 +102,4 @@ ani = animation.FuncAnimation(fig, update, interval=500, cache_frame_data=False)
 
 plt.show()
 ser.close()
-print("Zakonczono. Plik CSV jest gotowy do Matlaba.")
+print("Zakonczono.")

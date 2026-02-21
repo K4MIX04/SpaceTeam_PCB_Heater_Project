@@ -16,7 +16,7 @@ with open(csv_filename, mode='w', newline='') as file:
     writer = csv.writer(file, delimiter=',') 
     writer.writerow(["Czas_s", "Cel_C", "Obecna_C", "Moc_%"])
 
-print(f"Utworzono plik zapisu (format MATLAB): {csv_filename}")
+print(f"Utworzono plik zapisu: {csv_filename}")
 
 x_time = []
 y_setpoint = []
@@ -31,9 +31,9 @@ try:
     ser = serial.Serial(ARDUINO_PORT, BAUD_RATE, timeout=1)
     time.sleep(2) 
     ser.reset_input_buffer()
-    print("Połączono! Zbieranie danych...")
+    print("Połączono!")
 except Exception as e:
-    print(f"BŁĄD: Nie można otworzyć portu. Zamknij Arduino IDE! \nSzczegóły: {e}")
+    print(f"Nie można otworzyć portu. \nSzczegóły: {e}")
     exit()
 
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
