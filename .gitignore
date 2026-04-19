@@ -1,0 +1,10 @@
+casing_prototyping/Arduino base.ipt
+casing_prototyping/Arduino Uno.ipt
+casing_prototyping/Assembly1.iam
+casing_prototyping/button.ipt
+casing_prototyping/Iron prototype.ipt
+casing_prototyping/OLED-128x64-0.96.ipt
+casing_prototyping/potentiometer.ipt
+casing_prototyping/SSR.ipt
+**/OldVersions/
+*.lck
